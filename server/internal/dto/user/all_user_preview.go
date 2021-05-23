@@ -9,16 +9,16 @@ type AllUsersPreview struct {
 	UsersPreview []UserPreview
 }
 
-func (AllUsersPreview AllUsersPreview) Serialize(
+func (r AllUsersPreview) Serialize(
 	users []domain.User,
 ) (result []byte, err error, ) {
 	for _, user := range users {
-		AllUsersPreview.UsersPreview = append(
-			AllUsersPreview.UsersPreview,
+		r.UsersPreview = append(
+			r.UsersPreview,
 			UserPreview{
-				ID:   uint(user.ID),
+				ID:   user.ID,
 				Name: user.Name,
 			})
 	}
-	return json.Marshal(AllUsersPreview.UsersPreview)
+	return json.Marshal(r.UsersPreview)
 }

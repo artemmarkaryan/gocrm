@@ -6,7 +6,6 @@ import (
 
 type User struct {
 	gorm.Model
-	ID     uint64 `gorm:"primaryKey;autoIncrement:true"`
 	Name   string
 	Orders []Order // User has many Order
 }

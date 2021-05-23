@@ -1,13 +1,13 @@
 package domain
 
 import (
-	"github.com/jackc/pgtype"
+	"github.com/artemmarkaryan/gocrm/pkg/jsonb"
 	"gorm.io/gorm"
 )
 
 type Customer struct {
 	gorm.Model
-	Contact pgtype.JSONB
-
+	Contact jsonb.JSONB
+	Name    string
 	Orders  []Order // Customer has many Order
 }
