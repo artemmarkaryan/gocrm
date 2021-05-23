@@ -1,7 +1,9 @@
 package domain
 
+import "gorm.io/gorm"
+
 type Product struct {
-	ID    uint64 `gorm:"primaryKey;autoIncrement:true"`
+	gorm.Model
 	Name  string
 	Price uint
 }

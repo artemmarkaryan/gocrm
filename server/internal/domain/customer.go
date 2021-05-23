@@ -7,6 +7,7 @@ import (
 
 type Customer struct {
 	gorm.Model
-	ID      uint64 `gorm:"primaryKey;autoIncrement:true"`
 	Contact pgtype.JSONB
+
+	Orders  []Order // Customer has many Order
 }

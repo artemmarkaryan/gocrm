@@ -1,19 +1,19 @@
 package main
 
 import (
-	"github.com/artemmarkaryan/gocrm/internal/domain"
-	dotenv "github.com/joho/godotenv"
+	"github.com/artemmarkaryan/gocrm/internal"
+	"github.com/artemmarkaryan/gocrm/internal/service"
 	"log"
 )
 
-func configs() error {
-	return dotenv.Load()
-}
-
-
 func main() {
-	if err := configs(); err != nil {
+	if err := internal.Setup(); err != nil {
 		log.Panic("Configs not loaded:", err.Error())
 	}
-	_, _ = domain.NewDB()
+	result, err := service.UserService{}.GetAll()
+	if err != nil {
+		log.Fatal(err.Error())
+	} else {
+		log.Print(string(result))
+	}
 }
