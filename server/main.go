@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/artemmarkaryan/gocrm/internal"
 	"github.com/artemmarkaryan/gocrm/internal/domain"
+	"github.com/artemmarkaryan/gocrm/internal/server"
 	"log"
 )
 
@@ -15,10 +16,6 @@ func main() {
 		log.Panic(err.Error())
 	}
 	_ = domain.Migrate(db)
-	//result, err := service.UserService{}.GetAll()
-	//if err != nil {
-	//	log.Fatal(err.Error())
-	//} else {
-	//	log.Print(string(result))
-	//}
+
+	server.Run()
 }

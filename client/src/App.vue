@@ -3,10 +3,21 @@
     <div id="nav">
       <router-link to="/">Home</router-link>
     </div>
-<!--    <router-view/>-->
+    <router-view/>
   </div>
 </template>
 
+<script>
+export default {
+  name: "app",
+  props: {
+    user: {
+      id: 1,
+      name: "Ivan"
+    }
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

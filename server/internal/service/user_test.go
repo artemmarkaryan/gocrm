@@ -10,15 +10,6 @@ func TestUserService_GetAll(t *testing.T) {
 		t.Fatal(err.Error())
 	}
 
-	//db, err := domain.GetDB()
-	//if err != nil {
-	//	t.Fatal(err.Error())
-	//}
-	//testUser := domain.User{
-	//	Name: "test" + strconv.FormatInt(time.Now().Unix(), 10),
-	//}
-	//db.Create(&testUser).Commit()
-
 	service := UserService{}
 	result, err := service.GetAll()
 	if err != nil {
@@ -27,5 +18,4 @@ func TestUserService_GetAll(t *testing.T) {
 		t.Log(string(result))
 	}
 
-	//db.Delete(&testUser).Commit()
 }

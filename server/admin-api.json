@@ -1,0 +1,231 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Admin API",
+    "description": "API for CRM admin panel",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8000",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/user/all": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/order/all": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OrderPreview"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/order/{orderId}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "orderId",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "patch": {
+        "parameters": [
+          {
+            "in": "body",
+            "name": "userId",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "in": "body",
+            "schema": {
+              "type": "integer"
+            },
+            "name": "customerId",
+            "required": false
+          },
+          {
+            "in": "body",
+            "name": "basket",
+            "schema": {
+              "$ref": "#/definitions/Basket"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Id": {
+      "type": "integer",
+      "format": "uint"
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Customer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "name": {
+          "type": "string"
+        },
+        "contact": {
+          "type": "object"
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        }
+      }
+    },
+    "Item": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "product": {
+          "$ref": "#/definitions/Product"
+        },
+        "quantity": {
+          "type": "integer"
+        }
+      }
+    },
+    "Basket": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Item"
+          }
+        }
+      }
+    },
+    "OrderStatus": {
+      "type": "string"
+    },
+    "Order": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "basket": {
+          "$ref": "#/definitions/Basket"
+        },
+        "customer": {
+          "$ref": "#/definitions/Customer"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "status": {
+          "$ref": "#/definitions/OrderStatus"
+        }
+      }
+    },
+    "OrderPreview": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "userId": {
+          "type": "integer"
+        },
+        "customerId": {
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/definitions/OrderStatus"
+        }
+      }
+    }
+  }
+}

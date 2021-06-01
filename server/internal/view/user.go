@@ -1,11 +1,11 @@
 package view
 
-import "github.com/artemmarkaryan/gocrm/internal/dto"
+import (
+	"github.com/artemmarkaryan/gocrm/internal/service"
+)
 
-type UserView struct {}
+type UserView struct{}
 
 func (u *UserView) GetAll() (result []byte, err error) {
-	up := dto.AllUsersPreview{}
-	up.Load();
-	return up.Serialize()
+	return service.UserService{}.GetAll()
 }
