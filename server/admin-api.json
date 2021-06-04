@@ -74,23 +74,23 @@
             "in": "body",
             "name": "userId",
             "schema": {
-              "type": "integer"
+              "$ref": "#/definitions/Id"
             },
             "required": false
           },
           {
             "in": "body",
             "schema": {
-              "type": "integer"
+              "$ref": "#/definitions/Id"
             },
             "name": "customerId",
             "required": false
           },
           {
             "in": "body",
-            "name": "basket",
+            "name": "status",
             "schema": {
-              "$ref": "#/definitions/Basket"
+              "$ref": "#/definitions/OrderStatus"
             }
           }
         ],
@@ -112,6 +112,106 @@
             "description": "Not found"
           }
         }
+      }
+    },
+    "/customer/all": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerPreview"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/customer/{customerId}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "customerId",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/product/all": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/item/{itemId}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "itemId",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "patch": {
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Id"
+            },
+            "required": false
+          },
+          {
+            "name": "quantity",
+            "in": "body",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
       }
     }
   },
@@ -145,6 +245,17 @@
         }
       }
     },
+    "CustomerPreview": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "Product": {
       "type": "object",
       "properties": {
@@ -173,6 +284,20 @@
         }
       }
     },
+    "ItemPreview": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/Id"
+        },
+        "productId": {
+          "$ref": "#/definitions/Id"
+        },
+        "quantity": {
+          "type": "integer"
+        }
+      }
+    },
     "Basket": {
       "type": "object",
       "properties": {
@@ -187,6 +312,17 @@
         }
       }
     },
+    "BasketPreview": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemPreview"
+          }
+        }
+      }
+    },
     "OrderStatus": {
       "type": "string"
     },
@@ -197,13 +333,13 @@
           "$ref": "#/definitions/Id"
         },
         "basket": {
-          "$ref": "#/definitions/Basket"
+          "$ref": "#/definitions/BasketPreview"
         },
-        "customer": {
-          "$ref": "#/definitions/Customer"
+        "customerId": {
+          "$ref": "#/definitions/Id"
         },
-        "user": {
-          "$ref": "#/definitions/User"
+        "userId": {
+          "$ref": "#/definitions/Id"
         },
         "status": {
           "$ref": "#/definitions/OrderStatus"
