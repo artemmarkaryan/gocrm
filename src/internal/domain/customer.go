@@ -1,7 +1,7 @@
 package domain
 
 import (
-	"github.com/artemmarkaryan/gocrm/pkg/jsonb"
+	"github.com/artemmarkaryan/gocrm/src/pkg/jsonb"
 	"gorm.io/gorm"
 )
 

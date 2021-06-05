@@ -1,7 +1,7 @@
 package user
 
 import (
-	"github.com/artemmarkaryan/gocrm/internal/domain"
+	"github.com/artemmarkaryan/gocrm/src/internal/domain"
 )
 
 type UserPreview struct {

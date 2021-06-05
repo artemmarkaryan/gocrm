@@ -2,7 +2,7 @@ package user
 
 import (
 	"encoding/json"
-	"github.com/artemmarkaryan/gocrm/internal/domain"
+	"github.com/artemmarkaryan/gocrm/src/internal/domain"
 )
 
 type AllUsersPreview struct {

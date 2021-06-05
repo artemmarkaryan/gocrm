@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/artemmarkaryan/gocrm/internal/domain"
-	userDTO "github.com/artemmarkaryan/gocrm/internal/dto/user"
+	"github.com/artemmarkaryan/gocrm/src/internal/domain"
+	userDTO "github.com/artemmarkaryan/gocrm/src/internal/dto/user"
 )
 
 type UserService struct {}

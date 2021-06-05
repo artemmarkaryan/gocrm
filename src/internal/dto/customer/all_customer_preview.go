@@ -2,7 +2,7 @@ package customer
 
 import (
 	"encoding/json"
-	"github.com/artemmarkaryan/gocrm/internal/domain"
+	"github.com/artemmarkaryan/gocrm/src/internal/domain"
 )
 
 type AllCustomerPreview struct {
