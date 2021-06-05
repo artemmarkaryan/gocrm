@@ -1,7 +1,7 @@
 package service
 
 import (
-	"github.com/artemmarkaryan/gocrm/src/internal"
+	"github.com/artemmarkaryan/gocrm/cmd/app/internal"
 	"testing"
 )
 

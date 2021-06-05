@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/artemmarkaryan/gocrm/src/internal/domain"
-	customerDTO "github.com/artemmarkaryan/gocrm/src/internal/dto/customer"
+	"github.com/artemmarkaryan/gocrm/cmd/app/internal/domain"
+	customerDTO "github.com/artemmarkaryan/gocrm/cmd/app/internal/dto/customer"
 )
 
 type CustomerService struct {}

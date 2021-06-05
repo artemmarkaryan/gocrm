@@ -1,9 +1,9 @@
 package service
 
 import (
-	"github.com/artemmarkaryan/gocrm/src/internal"
-	"github.com/artemmarkaryan/gocrm/src/internal/domain"
-	"github.com/artemmarkaryan/gocrm/src/pkg/jsonb"
+	"github.com/artemmarkaryan/gocrm/cmd/app/internal"
+	"github.com/artemmarkaryan/gocrm/cmd/app/internal/domain"
+	"github.com/artemmarkaryan/gocrm/cmd/app/pkg/jsonb"
 	"strconv"
 	"testing"
 	"time"

@@ -1,7 +1,7 @@
 package view
 
 import (
-	"github.com/artemmarkaryan/gocrm/src/internal/service"
+	"github.com/artemmarkaryan/gocrm/cmd/app/internal/service"
 )
 
 type UserView struct{}
