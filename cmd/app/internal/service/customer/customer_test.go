@@ -1,4 +1,4 @@
-package service
+package customer
 
 import (
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal"

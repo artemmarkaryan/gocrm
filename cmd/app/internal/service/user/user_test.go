@@ -1,4 +1,4 @@
-package service
+package user
 
 import (
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal"
@@ -10,7 +10,7 @@ func TestUserService_GetAll(t *testing.T) {
 		t.Fatal(err.Error())
 	}
 
-	service := UserService{}
+	service := Service{}
 	result, err := service.GetAll()
 	if err != nil {
 		t.Error(err.Error())
