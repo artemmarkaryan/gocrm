@@ -3,9 +3,15 @@ package jsonb
 import (
 	"database/sql/driver"
 	"encoding/json"
+	"github.com/artemmarkaryan/gocrm/cmd/app/pkg/jsons"
 )
 
 type JSONB map[string]interface{}
+
+func (j JSONB) String() string {
+	s, _ := jsons.MarshalToString(j)
+	return s
+}
 
 func (j JSONB) Value() (driver.Value, error) {
 	valueString, err := json.Marshal(j)

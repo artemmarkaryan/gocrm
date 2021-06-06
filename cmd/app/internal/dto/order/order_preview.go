@@ -22,7 +22,7 @@ func NewOrderPreview(order domain.Order) *OrderPreview {
 }
 
 func (o OrderPreview) Serialize() (string, error) {
-	return jsons.MarshallToString(o)
+	return jsons.MarshalToString(o)
 }
 
 

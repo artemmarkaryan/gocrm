@@ -7,7 +7,7 @@ import (
 
 type Customer struct {
 	gorm.Model
-	Contact jsonb.JSONB
+	Contact *jsonb.JSONB
 	Name    string
 	Orders  []Order // Customer has many Order
 }

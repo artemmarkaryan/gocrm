@@ -24,7 +24,7 @@ func TestCustomerService_GetAll(t *testing.T) {
 	}
 	db.Create(&testCustomer).Commit()
 
-	service := CustomerService{}
+	service := Service{}
 	result, err := service.GetAll()
 	if err != nil {
 		t.Error(err.Error())

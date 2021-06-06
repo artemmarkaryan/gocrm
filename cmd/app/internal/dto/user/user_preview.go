@@ -18,5 +18,5 @@ func NewUserPreview(user domain.User) *UserPreview {
 }
 
 func (u UserPreview) Serialize() (string, error) {
-	return jsons.MarshallToString(u)
+	return jsons.MarshalToString(u)
 }

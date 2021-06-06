@@ -9,5 +9,5 @@ type ManyUsersPreview struct {
 }
 
 func (r ManyUsersPreview) Serialize() (string, error) {
-	return jsons.MarshallToString(r.UsersPreview)
+	return jsons.MarshalToString(r.UsersPreview)
 }

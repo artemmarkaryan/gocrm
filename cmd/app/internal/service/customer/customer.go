@@ -5,9 +5,9 @@ import (
 	customerDTO "github.com/artemmarkaryan/gocrm/cmd/app/internal/dto/customer"
 )
 
-type CustomerService struct {}
+type Service struct{}
 
-func (r CustomerService) GetAll() (result []byte, err error) {
+func (r Service) GetAll() (result string, err error) {
 	db, err := domain.GetDB()
 	if err != nil {
 		return
@@ -16,6 +16,13 @@ func (r CustomerService) GetAll() (result []byte, err error) {
 	var customers []domain.Customer
 	db.Find(&customers)
 
-	return customerDTO.AllCustomerPreview{}.Serialize(customers)
-}
+	allCustomersPreview := customerDTO.ManyCustomersPreview{}
+	for _, c := range customers {
+		allCustomersPreview.CustomersPreview = append(
+			allCustomersPreview.CustomersPreview,
+			*customerDTO.NewCustomerPreview(c),
+		)
+	}
 
+	return allCustomersPreview.Serialize()
+}

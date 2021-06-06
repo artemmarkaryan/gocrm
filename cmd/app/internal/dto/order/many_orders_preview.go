@@ -1,13 +1,13 @@
 package order
 
 import (
-	"encoding/json"
+	"github.com/artemmarkaryan/gocrm/cmd/app/pkg/jsons"
 )
 
 type ManyOrdersPreview struct {
 	OrderPreviews []OrderPreview
 }
 
-func (r ManyOrdersPreview) Serialize() (result []byte, err error, ) {
-	return json.Marshal(r.OrderPreviews)
+func (r ManyOrdersPreview) Serialize() (result string, err error, ) {
+	return jsons.MarshalToString(r.OrderPreviews)
 }

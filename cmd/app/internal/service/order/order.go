@@ -7,7 +7,7 @@ import (
 
 type Service struct{}
 
-func (orderService Service) GetAll() (result []byte, err error) {
+func (orderService Service) GetAll() (result string, err error) {
 	db, err := domain.GetDB()
 	if err != nil {
 		return
@@ -24,5 +24,5 @@ func (orderService Service) GetAll() (result []byte, err error) {
 		)
 	}
 
-	return
+	return allOrdersPreview.Serialize()
 }
