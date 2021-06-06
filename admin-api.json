@@ -46,6 +46,44 @@
         ]
       }
     },
+    "/order/": {
+      "post": {
+        "parameters": [
+          {
+            "name": "userId",
+            "schema": {
+              "$ref": "#/definitions/Id"
+            },
+            "in": "body"
+          },
+          {
+            "name": "customerId",
+            "schema": {
+              "$ref": "#/definitions/Id"
+            },
+            "in": "body"
+          },
+          {
+            "name": "items",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ItemPreview"
+              }
+            },
+            "in": "body"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
     "/order/{orderId}": {
       "parameters": [
         {
@@ -218,7 +256,8 @@
   "definitions": {
     "Id": {
       "type": "integer",
-      "format": "uint"
+      "format": "uint",
+      "example": 0
     },
     "User": {
       "type": "object",
