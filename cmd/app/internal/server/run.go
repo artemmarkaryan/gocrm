@@ -5,18 +5,19 @@ import (
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/view/order"
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/view/product"
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/view/user"
+	"github.com/gin-gonic/gin"
 	"log"
-	"net/http"
 )
 
 const address = "0.0.0.0:8000"
 
 func Run() {
-	http.HandleFunc("/user/all", user.View{}.GetAll)
-	http.HandleFunc("/customer/all", customer.View{}.GetAll)
-	http.HandleFunc("/product/all", product.View{}.GetAll)
-	http.HandleFunc("/order/all", order.View{}.GetAll)
+	r := gin.Default()
+	r.GET("/user/all", user.View{}.GetAll)
+	r.GET("/customer/all", customer.View{}.GetAll)
+	r.GET("/product/all", product.View{}.GetAll)
+	r.GET("/order/all", order.View{}.GetAll)
 
 	log.Printf("Running on http://%v", address)
-	_ = http.ListenAndServe(address, nil)
+	_ = r.Run(address)
 }

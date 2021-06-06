@@ -7,6 +7,7 @@ import (
 
 type Service struct{}
 
+
 func (userService Service) GetAll() (result string, err error) {
 	db, err := domain.GetDB()
 	if err != nil {
