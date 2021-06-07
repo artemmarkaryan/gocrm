@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"fmt"
 	"gorm.io/gorm"
 )
 
@@ -16,4 +17,20 @@ type Order struct {
 
 	OrderStatus   OrderStatus // Order belongs to OrderStatus
 	OrderStatusID uint
+}
+
+func (o Order) String() string {
+	return fmt.Sprintf(`
+id: %v,
+user: %v,
+customer: %v,
+status: %v,
+basket: {%v}
+`,
+		o.ID,
+		o.UserID,
+		o.CustomerID,
+		o.OrderStatusID,
+		o.Basket,
+	)
 }

@@ -6,6 +6,10 @@ type ManyProducts struct {
 	Products []Product
 }
 
+func (m ManyProducts) Deserialize(i interface{}) error {
+	panic("implement me")
+}
+
 func (m ManyProducts) Serialize() (string, error) {
 	return jsons.MarshalToString(m.Products)
 }

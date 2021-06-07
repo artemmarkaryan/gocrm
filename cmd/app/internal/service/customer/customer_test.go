@@ -18,9 +18,9 @@ func TestCustomerService_GetAll(t *testing.T) {
 	if err != nil {
 		t.Fatal(err.Error())
 	}
-	testCustomer :=	 domain.Customer{
-		Name: "test" + strconv.FormatInt(time.Now().Unix(), 10),
-		Contact: jsonb.JSONB{"phone": "89991002030"},
+	testCustomer := domain.Customer{
+		Name:    "test" + strconv.FormatInt(time.Now().Unix(), 10),
+		Contact: &jsonb.JSONB{"phone": "89991002030"},
 	}
 	db.Create(&testCustomer).Commit()
 

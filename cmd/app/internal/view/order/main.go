@@ -14,3 +14,10 @@ func (view View) GetAll(
 	v, _ := order.Service{}.GetAll()
 	ctx.String(http.StatusOK, v)
 }
+
+func (view View) New(
+	ctx *gin.Context,
+) {
+	v, _ := order.Service{}.New(ctx)
+	ctx.String(http.StatusOK, v)
+}

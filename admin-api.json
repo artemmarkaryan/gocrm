@@ -48,30 +48,13 @@
     },
     "/order/": {
       "post": {
+
+        "consumes": [
+          "application/json"
+        ],
         "parameters": [
           {
-            "name": "userId",
-            "schema": {
-              "$ref": "#/definitions/Id"
-            },
-            "in": "body"
-          },
-          {
-            "name": "customerId",
-            "schema": {
-              "$ref": "#/definitions/Id"
-            },
-            "in": "body"
-          },
-          {
-            "name": "items",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/ItemPreview"
-              }
-            },
-            "in": "body"
+            "$ref": "#/definitions/NewOrder"
           }
         ],
         "responses": {
@@ -382,6 +365,23 @@
         },
         "status": {
           "$ref": "#/definitions/OrderStatus"
+        }
+      }
+    },
+    "NewOrder": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "$ref": "#/definitions/Id"
+        },
+        "userId": {
+          "$ref": "#/definitions/Id"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemPreview"
+          }
         }
       }
     },

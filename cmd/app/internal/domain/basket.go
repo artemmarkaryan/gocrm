@@ -1,6 +1,9 @@
 package domain
 
-import "gorm.io/gorm"
+import (
+	"fmt"
+	"gorm.io/gorm"
+)
 
 type Basket struct {
 	gorm.Model
@@ -8,4 +11,14 @@ type Basket struct {
 	OrderID uint // Order has one Basket
 
 	Items []Item // Basket has many Item
+}
+
+func (b Basket) String() string {
+	return fmt.Sprintf(`
+id: %v
+items: %v
+`,
+		b.ID,
+		b.Items,
+	)
 }

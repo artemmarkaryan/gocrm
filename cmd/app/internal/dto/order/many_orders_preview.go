@@ -8,6 +8,10 @@ type ManyOrdersPreview struct {
 	OrderPreviews []OrderPreview
 }
 
+func (r ManyOrdersPreview) Deserialize(i interface{}) error {
+	panic("implement me")
+}
+
 func (r ManyOrdersPreview) Serialize() (result string, err error, ) {
 	return jsons.MarshalToString(r.OrderPreviews)
 }

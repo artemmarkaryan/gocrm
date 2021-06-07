@@ -11,6 +11,10 @@ type Product struct {
 	Price uint   `json:"price"`
 }
 
+func (p Product) Deserialize(i interface{}) error {
+	panic("implement me")
+}
+
 func (p Product) Serialize() (string, error) {
 	return jsons.MarshalToString(p)
 }

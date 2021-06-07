@@ -12,6 +12,10 @@ type OrderPreview struct {
 	Status     string `json:"status"`
 }
 
+func (o OrderPreview) Deserialize(i interface{}) error {
+	panic("implement me")
+}
+
 func NewOrderPreview(order domain.Order) *OrderPreview {
 	return &OrderPreview{
 		ID:         order.ID,
