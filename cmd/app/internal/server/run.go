@@ -8,9 +8,10 @@ import (
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/view/user"
 	"github.com/gin-gonic/gin"
 	"log"
+	"os"
 )
 
-const address = "0.0.0.0:8000"
+const address = "0.0.0.0"
 
 func Run() {
 	r := gin.Default()
@@ -35,7 +36,11 @@ func Run() {
 	r.PATCH("/order/:id", order.View{}.PatchOne)
 	r.DELETE("/order/:id", order.View{}.Delete)
 	r.POST("/order", order.View{}.New)
-
-	log.Printf("Running on http://%v", address)
+	
+	port, ok := os.LookupEnv("PORT")
+	if !ok  {
+		log.Fatal("No port declared in env")
+	}
+	log.Printf("Running on http://%v:%v", address, port)
 	_ = r.Run(address)
 }
