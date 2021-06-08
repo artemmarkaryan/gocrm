@@ -19,7 +19,11 @@ func (j JSONB) Value() (driver.Value, error) {
 }
 
 func (j *JSONB) Scan(value interface{}) error {
-	if err := json.Unmarshal(value.([]byte), &j); err != nil {
+	var payload []byte
+	if v, ok := value.(string); ok {
+		payload = []byte(v)
+	}
+	if err := json.Unmarshal(payload, &j); err != nil {
 		return err
 	}
 	return nil

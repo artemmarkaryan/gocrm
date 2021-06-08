@@ -1,6 +1,7 @@
 package order
 
 import (
+	"errors"
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/domain"
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/dto/order"
 	"github.com/gin-gonic/gin"
@@ -62,16 +63,21 @@ func (s Service) PatchOne(ctx *gin.Context) (result string, err error) {
 	return
 }
 
-func (s Service) Delete(ctx *gin.Context) (result string, err error) {
+func (s Service) Delete(id string) error {
 	db, err := domain.GetDB()
 	if err != nil {
-		return
+		return err
 	}
 
 	o := domain.Order{}
-	db.Find(&o, ctx.Param("id"))
-	db.Delete(&o).Commit()
-	return
+	db.Find(&o, id)
+
+	if o.ID == 0 {
+		return errors.New("Orders does not exist")
+	}
+	db.Unscoped().Delete(&o).Commit()
+
+	return nil
 }
 
 func (s Service) New(ctx *gin.Context) (result string, err error) {

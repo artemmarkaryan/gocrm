@@ -8,7 +8,7 @@ import (
 type Order struct {
 	gorm.Model
 	// Order has one Basket
-	Basket Basket
+	Basket Basket `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 
 	// User has many Order
 	User   User

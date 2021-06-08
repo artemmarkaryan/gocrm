@@ -32,8 +32,12 @@ func (view View) PatchOne(
 func (view View) Delete(
 	ctx *gin.Context,
 ) {
-	v, _ := order.Service{}.Delete(ctx)
-	ctx.String(http.StatusOK, v)
+	err := order.Service{}.Delete(ctx.Param("id"))
+	if err != nil {
+		ctx.String(http.StatusNotFound, err.Error())
+	} else {
+		ctx.Status(http.StatusOK)
+	}
 }
 
 func (view View) New(

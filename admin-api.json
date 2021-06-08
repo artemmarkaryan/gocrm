@@ -25,7 +25,8 @@
         },
         "produces": [
           "application/json"
-        ]
+        ],
+        "description": "Работает"
       }
     },
     "/order/all": {
@@ -43,7 +44,8 @@
         },
         "produces": [
           "application/json"
-        ]
+        ],
+        "description": "Работает"
       }
     },
     "/order/": {
@@ -63,7 +65,8 @@
         },
         "produces": [
           "application/json"
-        ]
+        ],
+        "description": "Работает"
       }
     },
     "/order/{orderId}": {
@@ -86,7 +89,8 @@
           "404": {
             "description": "Not found"
           }
-        }
+        },
+        "description": "Работает"
       },
       "patch": {
         "parameters": [
@@ -121,7 +125,8 @@
           "404": {
             "description": "Not found"
           }
-        }
+        },
+        "description": "Работает"
       },
       "delete": {
         "responses": {
@@ -131,7 +136,8 @@
           "404": {
             "description": "Not found"
           }
-        }
+        },
+        "description": "Работает"
       }
     },
     "/customer/all": {

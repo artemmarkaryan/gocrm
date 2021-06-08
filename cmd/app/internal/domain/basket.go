@@ -12,7 +12,7 @@ type Basket struct {
 	OrderID uint
 
 	// Basket has many Item
-	Items []Item
+	Items []Item `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 }
 
 func (b Basket) String() string {
