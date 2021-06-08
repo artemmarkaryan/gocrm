@@ -19,9 +19,11 @@ const address = "0.0.0.0"
 func Run() {
 	r := gin.Default()
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://0.0.0.0", "http://127.0.0.1", "http://localhost"},
-		AllowMethods:     []string{"PUT", "PATCH", "POST", "DELETE"},
-		AllowHeaders:     []string{"X-Requested-With", "content-type", "Authorization", "Cache-Control"},
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"PUT", "PATCH", "POST", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{
+			"Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization",
+			"accept", "origin", "Cache-Control", "X-Requested-With"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 		MaxAge: 12 * time.Hour,
