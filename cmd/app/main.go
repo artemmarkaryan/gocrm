@@ -8,7 +8,7 @@ import (
 
 func main() {
 	if err := internal.Setup(); err != nil {
-		log.Panic("Configs not loaded:", err.Error())
+		log.Print("Configs not loaded:", err.Error())
 	}
 	//db, err := domain.GetDB()
 	//if err != nil {
