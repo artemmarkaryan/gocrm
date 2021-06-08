@@ -19,6 +19,6 @@ func (p Product) Serialize() (string, error) {
 	return jsons.MarshalToString(p)
 }
 
-func NewProduct(dbo domain.Product) *Product {
+func CreateProduct(dbo domain.Product) *Product {
 	return &Product{Id: dbo.ID, Name: dbo.Name, Price: dbo.Price}
 }

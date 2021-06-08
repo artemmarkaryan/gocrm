@@ -7,5 +7,7 @@ import (
 type User struct {
 	gorm.Model
 	Name   string
-	Orders []Order // User has many Order
+
+	// User has many Order
+	Orders []Order
 }

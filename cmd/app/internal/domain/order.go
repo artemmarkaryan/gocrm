@@ -7,19 +7,21 @@ import (
 
 type Order struct {
 	gorm.Model
-	Basket Basket // Order has one Basket
+	// Order has one Basket
+	Basket Basket
 
-	User   User // User has many Order
+	// User has many Order
+	User   User
 	UserID uint
 
-	Customer   Customer // Customer has many Order
+	// Customer has many Order
+	Customer   Customer
 	CustomerID uint
 
-	OrderStatus   OrderStatus // Order belongs to OrderStatus
-	OrderStatusID uint
+	OrderStatus string
 }
 
-func (o Order) String() string {
+func (o *Order) String() string {
 	return fmt.Sprintf(`
 id: %v,
 user: %v,
@@ -30,7 +32,7 @@ basket: {%v}
 		o.ID,
 		o.UserID,
 		o.CustomerID,
-		o.OrderStatusID,
+		o.OrderStatus,
 		o.Basket,
 	)
 }

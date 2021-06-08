@@ -10,7 +10,7 @@ type UserPreview struct {
 	Name string `json:"name"`
 }
 
-func NewUserPreview(user domain.User) *UserPreview {
+func CreateUserPreview(user domain.User) *UserPreview {
 	return &UserPreview{
 		ID:   user.ID,
 		Name: user.Name,

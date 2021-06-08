@@ -20,7 +20,7 @@ func (r Service) GetAll() (result string, err error) {
 	for _, c := range customers {
 		allCustomersPreview.CustomersPreview = append(
 			allCustomersPreview.CustomersPreview,
-			*customerDTO.NewCustomerPreview(c),
+			*customerDTO.CreateCustomerPreview(c),
 		)
 	}
 

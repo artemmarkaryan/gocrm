@@ -21,7 +21,7 @@ func (userService Service) GetAll() (result string, err error) {
 	for _, u := range users {
 		allUsersPreview.UsersPreview = append(
 			allUsersPreview.UsersPreview,
-			*userDTO.NewUserPreview(u),
+			*userDTO.CreateUserPreview(u),
 		)
 	}
 

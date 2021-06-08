@@ -20,7 +20,7 @@ func (userService Service) GetAll() (result string, err error) {
 	for _, p := range products {
 		allProductsPreview.Products = append(
 			allProductsPreview.Products,
-			*product.NewProduct(p),
+			*product.CreateProduct(p),
 		)
 	}
 

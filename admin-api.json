@@ -48,7 +48,6 @@
     },
     "/order/": {
       "post": {
-
         "consumes": [
           "application/json"
         ],
@@ -111,7 +110,7 @@
             "in": "body",
             "name": "status",
             "schema": {
-              "$ref": "#/definitions/OrderStatus"
+              "type": "string"
             }
           }
         ],
@@ -345,9 +344,6 @@
         }
       }
     },
-    "OrderStatus": {
-      "type": "string"
-    },
     "Order": {
       "type": "object",
       "properties": {
@@ -364,7 +360,7 @@
           "$ref": "#/definitions/Id"
         },
         "status": {
-          "$ref": "#/definitions/OrderStatus"
+          "type": "string"
         }
       }
     },
@@ -398,7 +394,7 @@
           "type": "integer"
         },
         "status": {
-          "$ref": "#/definitions/OrderStatus"
+          "type": "string"
         }
       }
     }

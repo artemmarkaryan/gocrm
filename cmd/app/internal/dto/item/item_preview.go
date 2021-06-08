@@ -11,6 +11,10 @@ type ItemPreview struct {
 	Quantity  uint8 `json:"quantity"`
 }
 
+func CreateItemPreview(i *domain.Item) *ItemPreview {
+	return &ItemPreview{Id: i.ID, ProductId: i.ProductID, Quantity: i.Quantity}
+}
+
 func (i ItemPreview) String() string {
 	return fmt.Sprintf(`
 id: %v,

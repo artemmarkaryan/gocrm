@@ -8,9 +8,11 @@ import (
 type Basket struct {
 	gorm.Model
 
-	OrderID uint // Order has one Basket
+	// Order has one Basket
+	OrderID uint
 
-	Items []Item // Basket has many Item
+	// Basket has many Item
+	Items []Item
 }
 
 func (b Basket) String() string {

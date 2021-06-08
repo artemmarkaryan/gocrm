@@ -19,6 +19,6 @@ func (c CustomerPreview) Deserialize(i interface{}) error {
 	panic("implement me")
 }
 
-func NewCustomerPreview(dbo domain.Customer) *CustomerPreview {
+func CreateCustomerPreview(dbo domain.Customer) *CustomerPreview {
 	return &CustomerPreview{ID: dbo.ID, Name: dbo.Name, Contact: dbo.Contact}
 }

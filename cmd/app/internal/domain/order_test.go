@@ -24,8 +24,8 @@ func TestOrder(t *testing.T) {
 				},
 			},
 		},
-		UserID:        4,
-		CustomerID:    3,
-		OrderStatusID: 1,
+		UserID:      4,
+		CustomerID:  3,
+		OrderStatus: "Новый",
 	}).Commit()
 }

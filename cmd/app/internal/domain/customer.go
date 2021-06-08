@@ -9,5 +9,7 @@ type Customer struct {
 	gorm.Model
 	Contact *jsonb.JSONB
 	Name    string
-	Orders  []Order // Customer has many Order
+
+	// Customer has many Order
+	Orders  []Order
 }

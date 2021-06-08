@@ -17,6 +17,9 @@ func Run() {
 	r.GET("/customer/all", customer.View{}.GetAll)
 	r.GET("/product/all", product.View{}.GetAll)
 	r.GET("/order/all", order.View{}.GetAll)
+	r.GET("/order/:id", order.View{}.GetOne)
+	r.PATCH("/order/:id", order.View{}.PatchOne)
+	r.DELETE("/order/:id", order.View{}.Delete)
 	r.POST("/order", order.View{}.New)
 
 	log.Printf("Running on http://%v", address)

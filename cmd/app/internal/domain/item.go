@@ -8,9 +8,11 @@ import (
 type Item struct {
 	gorm.Model
 
-	BasketId uint // Basket has many Item
+	// Basket has many Item
+	BasketID uint
 
-	Product   Product // Item belongs to Product
+	// Item belongs to Product
+	Product   Product
 	ProductID uint
 
 	Quantity uint8

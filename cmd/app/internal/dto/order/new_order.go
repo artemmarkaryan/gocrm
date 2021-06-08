@@ -38,8 +38,8 @@ func (o NewOrder) ToDBO() *domain.Order {
 		Basket: domain.Basket{
 			Items: dbItems,
 		},
-		UserID:        o.UserId,
-		CustomerID:    o.CustomerId,
-		OrderStatusID: 1,
+		UserID:      o.UserId,
+		CustomerID:  o.CustomerId,
+		OrderStatus: "Новый",
 	}
 }
