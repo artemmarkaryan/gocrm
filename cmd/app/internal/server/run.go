@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/view/customer"
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/view/item"
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/view/order"
@@ -9,7 +10,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"os"
-	"strconv"
 )
 
 const address = "0.0.0.0"
@@ -38,11 +38,10 @@ func Run() {
 	r.DELETE("/order/:id", order.View{}.Delete)
 	r.POST("/order", order.View{}.New)
 	
-	portString := os.Args[0]
-	port, err := strconv.Atoi(portString)
-	if err != nil  {
+	port, ok := os.LookupEnv("PORT")
+	if !ok  {
 		log.Fatal("No port declared in env")
 	}
 	log.Printf("Running on http://%v:%v", address, port)
-	_ = r.Run(address)
+	_ = r.Run(fmt.Sprintf("%v:%v", address, port))
 }
