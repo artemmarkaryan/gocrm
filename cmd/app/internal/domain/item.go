@@ -20,9 +20,11 @@ type Item struct {
 
 func (i Item) String() string {
 	return fmt.Sprintf(`
-productId: %v,
+id: %v
+productId: %v
 quantity: %v
 `,
+		i.ID,
 		i.ProductID,
 		i.Quantity)
 }

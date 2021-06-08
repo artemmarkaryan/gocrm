@@ -14,3 +14,11 @@ func (view View) GetAll(
 	v, _ := customer.Service{}.GetAll()
 	ctx.String(http.StatusOK, v)
 }
+
+func (view View) GetOne(
+	ctx *gin.Context,
+) {
+	id := ctx.Param("id")
+	v, _ := customer.Service{}.GetOne(id)
+	ctx.String(http.StatusOK, v)
+}

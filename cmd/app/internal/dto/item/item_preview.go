@@ -34,8 +34,10 @@ func (i ItemPreview) Deserialize(i2 interface{}) error {
 }
 
 func (i ItemPreview) ToDBO() *domain.Item {
-	return &domain.Item{
+	dbo := &domain.Item{
 		ProductID: i.ProductId,
 		Quantity:  i.Quantity,
 	}
+	dbo.ID = i.Id
+	return dbo
 }

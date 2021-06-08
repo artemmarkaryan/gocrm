@@ -155,7 +155,8 @@
         },
         "produces": [
           "application/json"
-        ]
+        ],
+        "description": "Работает"
       }
     },
     "/customer/{customerId}": {
@@ -178,7 +179,8 @@
         },
         "produces": [
           "application/json"
-        ]
+        ],
+        "description": "Работает"
       }
     },
     "/product/all": {
@@ -196,7 +198,8 @@
         },
         "produces": [
           "application/json"
-        ]
+        ],
+        "description": "Работает"
       }
     },
     "/item/{itemId}": {
@@ -227,6 +230,19 @@
             "required": false
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      },
+      "delete": {
         "responses": {
           "200": {
             "description": "OK"
