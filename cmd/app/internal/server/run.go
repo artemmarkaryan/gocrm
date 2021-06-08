@@ -7,15 +7,28 @@ import (
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/view/order"
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/view/product"
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/view/user"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"log"
 	"os"
+	"time"
 )
 
 const address = "0.0.0.0"
 
 func Run() {
 	r := gin.Default()
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"https://foo.com"},
+		AllowMethods:     []string{"PUT", "PATCH"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		AllowOriginFunc: func(origin string) bool {
+			return origin == "https://github.com"
+		},
+		MaxAge: 12 * time.Hour,
+	}))
 
 	// user
 	r.GET("/user/all", user.View{}.GetAll)
@@ -37,9 +50,9 @@ func Run() {
 	r.PATCH("/order/:id", order.View{}.PatchOne)
 	r.DELETE("/order/:id", order.View{}.Delete)
 	r.POST("/order", order.View{}.New)
-	
+
 	port, ok := os.LookupEnv("PORT")
-	if !ok  {
+	if !ok {
 		log.Fatal("No port declared in env")
 	}
 	log.Printf("Running on http://%v:%v", address, port)
