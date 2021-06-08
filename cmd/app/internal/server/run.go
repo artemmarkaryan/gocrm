@@ -21,12 +21,9 @@ func Run() {
 	r.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://0.0.0.0", "http://127.0.0.1", "http://localhost"},
 		AllowMethods:     []string{"PUT", "PATCH", "POST", "DELETE"},
-		AllowHeaders:     []string{"Origin"},
+		AllowHeaders:     []string{"X-Requested-With", "content-type", "Authorization", "Cache-Control"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
-		AllowOriginFunc: func(origin string) bool {
-			return origin == "https://github.com"
-		},
 		MaxAge: 12 * time.Hour,
 	}))
 
