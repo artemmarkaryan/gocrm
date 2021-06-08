@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"os"
+	"strconv"
 )
 
 const address = "0.0.0.0"
@@ -37,8 +38,9 @@ func Run() {
 	r.DELETE("/order/:id", order.View{}.Delete)
 	r.POST("/order", order.View{}.New)
 	
-	port, ok := os.LookupEnv("PORT")
-	if !ok  {
+	portString := os.Args[0]
+	port, err := strconv.Atoi(portString)
+	if err != nil  {
 		log.Fatal("No port declared in env")
 	}
 	log.Printf("Running on http://%v:%v", address, port)
