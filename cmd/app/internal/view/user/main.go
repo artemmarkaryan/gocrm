@@ -14,3 +14,18 @@ func (view View) GetAll(
 	v, _ := user.Service{}.GetAll()
 	ctx.String(http.StatusOK, v)
 }
+
+func (view View) Auth(
+	ctx *gin.Context,
+) {
+	username, password := ctx.Param("username"), ctx.Param("password")
+	if username == "" || password == "" {
+		ctx.Status(http.StatusBadRequest)
+	}
+	ok, _ := user.Service{}.Auth(username, password)
+	if !ok {
+		ctx.Status(http.StatusUnauthorized)
+	} else {
+
+	}
+}
