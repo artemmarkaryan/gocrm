@@ -18,14 +18,19 @@ func (view View) GetAll(
 func (view View) Auth(
 	ctx *gin.Context,
 ) {
-	username, password := ctx.Param("username"), ctx.Param("password")
-	if username == "" || password == "" {
+	data := struct {
+		Username string `json:"username"`
+		Password string `json:"password"`
+	}{}
+	err := ctx.BindJSON(&data)
+	if err != nil || data.Username == "" || data.Password == "" {
 		ctx.Status(http.StatusBadRequest)
 	}
-	ok, _ := user.Service{}.Auth(username, password)
-	if !ok {
-		ctx.Status(http.StatusUnauthorized)
-	} else {
 
+	ok, _ := user.Service{}.Auth(data.Username, data.Password)
+	if ok {
+		ctx.Status(http.StatusOK)
+	} else {
+		ctx.Status(http.StatusUnauthorized)
 	}
 }
