@@ -6,7 +6,9 @@ import (
 
 type User struct {
 	gorm.Model
-	Name   string
+	Name     string
+	Login    string
+	Password string `gorm:"type:bytea"`
 
 	// User has many Order
 	Orders []Order

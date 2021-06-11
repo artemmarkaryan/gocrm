@@ -10,6 +10,35 @@
     "http"
   ],
   "paths": {
+    "/auth": {
+      "post": {
+        "parameters": [
+          {
+            "name": "username",
+            "schema": {
+              "type": "string"
+            },
+            "in": "body"
+          },
+          {
+            "name": "password",
+            "schema": {
+              "type": "string"
+            },
+            "in": "body"
+          }
+
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Wrong password"
+          }
+        }
+      }
+    },
     "/user/all": {
       "get": {
         "responses": {

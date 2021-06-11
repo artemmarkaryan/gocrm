@@ -2,6 +2,8 @@ package domain
 
 import (
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal"
+	"github.com/artemmarkaryan/gocrm/cmd/app/pkg/encryption"
+	"os"
 	"testing"
 	"time"
 )
@@ -18,5 +20,7 @@ func TestUser(t *testing.T) {
 	}
 	db.Create(&User{
 		Name: time.Now().String(),
+		Login: "username",
+		Password: encryption.Encrypt("password", os.Getenv("SECRET")),
 	}).Commit()
 }
