@@ -1,15 +1,16 @@
 package server
 
 import (
+	"github.com/artemmarkaryan/gocrm/cmd/app/internal/server/middleware"
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/server/routes"
 	"github.com/gin-gonic/gin"
 )
 
 type RouteGroup interface {
-	AddRoutes(*gin.Engine)
+	AddRoutes(group *gin.RouterGroup)
 }
 
-var routeGroups = []RouteGroup{
+var privateRouteGroups = [...]RouteGroup{
 	routes.Customer{},
 	routes.Item{},
 	routes.Order{},
@@ -18,7 +19,11 @@ var routeGroups = []RouteGroup{
 }
 
 func setRouter(r *gin.Engine){
-	for _, routeGroup := range routeGroups {
-		routeGroup.AddRoutes(r)
+	routes.Auth{}.AddRoutes(r)
+
+	private := r.Group("/")
+	private.Use(middleware.AuthRequiredProvider{}.GetMiddlewareFunc())
+	for _, routeGroup := range privateRouteGroups {
+		routeGroup.AddRoutes(private)
 	}
 }

@@ -1,7 +1,7 @@
 package user
 
 import (
-	"errors"
+	//"errors"
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/domain"
 	userDTO "github.com/artemmarkaryan/gocrm/cmd/app/internal/dto/user"
 	"github.com/artemmarkaryan/gocrm/cmd/app/pkg/encryption"
@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	EWrongPassword = errors.New("Wrong password")
+	//EWrongPassword = errors.New("Wrong password")
 )
 
 type Service struct{}
@@ -34,7 +34,7 @@ func (userService Service) GetAll() (result string, err error) {
 	return allUsersPreview.Serialize()
 }
 
-func (userService Service) Auth(username, password string) (ok bool, err error) {
+func (userService Service) Auth(username, password string) (DTUser userDTO.UserPreview, ok bool) {
 	db, err := domain.GetDB()
 	if err != nil {
 		return
@@ -43,9 +43,9 @@ func (userService Service) Auth(username, password string) (ok bool, err error) 
 	var user domain.User
 	encryptedPassword := encryption.Encrypt(password, os.Getenv("SECRET"))
 	db.Find(&user, "login = ? and password = ?", username, encryptedPassword)
-	if user.ID == 0 {
-		return false, EWrongPassword
-	} else {
-		return true, nil
+	if user.ID != 0 {
+		DTUser = *userDTO.CreateUserPreview(user)
+		ok = true
 	}
+	return
 }

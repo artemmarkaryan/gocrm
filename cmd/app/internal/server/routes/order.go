@@ -7,7 +7,7 @@ import (
 
 type Order struct {}
 
-func (o Order) AddRoutes(r *gin.Engine) {
+func (o Order) AddRoutes(r *gin.RouterGroup) {
 	r.GET("/order/all", order.View{}.GetAll)
 	r.GET("/order/:id", order.View{}.GetOne)
 	r.PATCH("/order/:id", order.View{}.PatchOne)

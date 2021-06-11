@@ -7,8 +7,7 @@ import (
 
 type Customer struct{}
 
-func (c Customer) AddRoutes(r *gin.Engine) {
+func (c Customer) AddRoutes(r *gin.RouterGroup) {
 	r.GET("/customer/all", customer.View{}.GetAll)
 	r.GET("/customer/:id", customer.View{}.GetOne)
-
 }

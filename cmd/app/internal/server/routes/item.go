@@ -7,7 +7,7 @@ import (
 
 type Item struct {}
 
-func (i Item) AddRoutes(r *gin.Engine) {
+func (i Item) AddRoutes(r *gin.RouterGroup) {
 	r.PATCH("/item/:id", item.View{}.PatchOne)
 	r.DELETE("/item/:id", item.View{}.Delete)
 }

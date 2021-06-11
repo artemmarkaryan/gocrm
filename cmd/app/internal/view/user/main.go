@@ -1,7 +1,9 @@
 package user
 
 import (
+	"github.com/artemmarkaryan/gocrm/cmd/app/internal/server/middleware"
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/service/user"
+	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -18,6 +20,7 @@ func (view View) GetAll(
 func (view View) Auth(
 	ctx *gin.Context,
 ) {
+	session := sessions.Default(ctx)
 	data := struct {
 		Username string `json:"username"`
 		Password string `json:"password"`
@@ -25,12 +28,19 @@ func (view View) Auth(
 	err := ctx.BindJSON(&data)
 	if err != nil || data.Username == "" || data.Password == "" {
 		ctx.Status(http.StatusBadRequest)
+		return
 	}
 
-	ok, _ := user.Service{}.Auth(data.Username, data.Password)
-	if ok {
-		ctx.Status(http.StatusOK)
-	} else {
+	DTUser, ok := user.Service{}.Auth(data.Username, data.Password)
+	if !ok {
 		ctx.Status(http.StatusUnauthorized)
+		return
 	}
+
+	session.Set(middleware.UserKey, DTUser.ID)
+	if err = session.Save(); err != nil {
+		ctx.Status(http.StatusInternalServerError)
+		return
+	}
+	ctx.Status(http.StatusOK)
 }

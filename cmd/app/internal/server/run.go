@@ -10,8 +10,6 @@ const address = "0.0.0.0"
 
 func Run() {
 	r := getEngine()
-	setRouter(r)
-	setMiddleware(r)
 
 	port, ok := os.LookupEnv("PORT")
 	if !ok {

@@ -7,6 +7,6 @@ import (
 
 type Product struct {}
 
-func (p Product) AddRoutes(r *gin.Engine) {
+func (p Product) AddRoutes(r *gin.RouterGroup) {
 	r.GET("/product/all", product.View{}.GetAll)
 }

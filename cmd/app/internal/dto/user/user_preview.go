@@ -6,14 +6,16 @@ import (
 )
 
 type UserPreview struct {
-	ID   uint   `json:"id"`
-	Name string `json:"name"`
+	ID       uint   `json:"id"`
+	Name     string `json:"name"`
+	Username string `json:"username"`
 }
 
 func CreateUserPreview(user domain.User) *UserPreview {
 	return &UserPreview{
-		ID:   user.ID,
-		Name: user.Name,
+		ID:       user.ID,
+		Name:     user.Name,
+		Username: user.Login,
 	}
 }
 
