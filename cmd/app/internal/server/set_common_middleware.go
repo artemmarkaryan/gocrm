@@ -15,7 +15,6 @@ var commonMiddlewareProviders = [...]MiddlewareProvider{
 }
 
 func setCommonMiddleware(r *gin.Engine) {
-
 	for _, provider := range commonMiddlewareProviders {
 		r.Use(provider.GetMiddlewareFunc())
 	}
