@@ -10,7 +10,7 @@ type CORSProvider struct {}
 
 func (C CORSProvider) GetMiddlewareFunc() gin.HandlerFunc {
 	return cors.New(cors.Config{
-		AllowOrigins: []string{"localhost", "0.0.0.0", "127.0.0.1", "golangcrm.herokuapp.com"},
+		AllowOrigins: []string{"http://localhost", "http://0.0.0.0", "http://127.0.0.1", "https://golangcrm.herokuapp.com"},
 		AllowMethods: []string{"PUT", "PATCH", "POST", "DELETE", "OPTIONS"},
 		AllowHeaders: []string{
 			"Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization",
