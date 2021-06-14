@@ -9,7 +9,7 @@ import (
 func (view View) PatchOne(
 	ctx *gin.Context,
 ) {
-	_, err := order.Service{}.PatchOne(ctx)
+	err := order.Service{}.PatchOne(ctx)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	} else {

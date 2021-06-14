@@ -16,6 +16,7 @@ var privateRouteGroups = [...]RouteGroup{
 	routes.Order{},
 	routes.Product{},
 	routes.User{},
+	routes.Ping{},
 }
 
 func setRouter(r *gin.Engine){
