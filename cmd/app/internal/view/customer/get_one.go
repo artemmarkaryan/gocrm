@@ -6,16 +6,9 @@ import (
 	"net/http"
 )
 
-type View struct{}
 
-func (view View) GetAll(
-	ctx *gin.Context,
-) {
-	v, _ := customer.Service{}.GetAll()
-	ctx.String(http.StatusOK, v)
-}
 
-func (view View) GetOne(
+func (r View) GetOne(
 	ctx *gin.Context,
 ) {
 	id := ctx.Param("id")

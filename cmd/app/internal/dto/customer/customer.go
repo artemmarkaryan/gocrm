@@ -4,6 +4,7 @@ import (
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/domain"
 	"github.com/artemmarkaryan/gocrm/cmd/app/pkg/jsonb"
 	"github.com/artemmarkaryan/gocrm/cmd/app/pkg/jsons"
+	"gorm.io/gorm"
 )
 
 type Customer struct {
@@ -22,4 +23,12 @@ func CreateCustomer(dbo domain.Customer) *Customer {
 
 func (c *Customer) Serialize() (string, error) {
 	return jsons.MarshalToString(c)
+}
+
+func (c *Customer) ToDBO() *domain.Customer {
+	return &domain.Customer{
+		Model:   gorm.Model{ID: c.ID},
+		Name:    c.Name,
+		Contact: c.Contact,
+	}
 }
