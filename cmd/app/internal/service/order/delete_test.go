@@ -36,5 +36,6 @@ func TestService_Delete(t *testing.T) {
 
 	log.Print("Order created: ", o)
 
-	_, err = Service{}.Delete(strconv.Itoa(int(o.ID)))
+	err = Service{}.Delete(strconv.Itoa(int(o.ID)))
+
 }
