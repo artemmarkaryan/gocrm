@@ -10,7 +10,7 @@
     "http"
   ],
   "paths": {
-    "/auth": {
+    "/login": {
       "post": {
         "parameters": [
           {
@@ -125,14 +125,6 @@
         "parameters": [
           {
             "in": "body",
-            "name": "userId",
-            "schema": {
-              "$ref": "#/definitions/Id"
-            },
-            "required": false
-          },
-          {
-            "in": "body",
             "schema": {
               "$ref": "#/definitions/Id"
             },
@@ -167,6 +159,32 @@
           }
         },
         "description": "Работает"
+      }
+    },
+    "/customer/": {
+      "post": {
+        "parameters": [
+          {
+            "name": "name",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contact",
+            "in": "body",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/customer/all": {
@@ -210,6 +228,55 @@
           "application/json"
         ],
         "description": "Работает"
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/product/":{
+      "post": {
+        "parameters": [
+          {
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "in": "body"
+          },
+          {
+            "name": "price",
+            "schema": {
+              "type": "integer"
+            },
+            "in": "body"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/product/{productId}":{
+      "parameters": [
+        {
+          "in": "path",
+          "name": "productId",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/product/all": {
@@ -419,9 +486,6 @@
       "type": "object",
       "properties": {
         "customerId": {
-          "$ref": "#/definitions/Id"
-        },
-        "userId": {
           "$ref": "#/definitions/Id"
         },
         "items": {
