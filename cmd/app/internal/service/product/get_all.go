@@ -5,9 +5,8 @@ import (
 	"github.com/artemmarkaryan/gocrm/cmd/app/internal/dto/product"
 )
 
-type Service struct{}
 
-func (userService Service) GetAll() (result string, err error) {
+func (s Service) GetAll() (result string, err error) {
 	db, err := domain.GetDB()
 	if err != nil {
 		return

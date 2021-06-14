@@ -6,8 +6,6 @@ import (
 	"net/http"
 )
 
-type View struct{}
-
 func (view View) GetAll(
 	ctx *gin.Context,
 ) {
