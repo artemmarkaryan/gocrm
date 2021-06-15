@@ -13,8 +13,8 @@ func (C CORSProvider) GetMiddlewareFunc() gin.HandlerFunc {
 	log.Print("setting cors")
 	return cors.New(cors.Config{
 		AllowOrigins: []string{
-			"http://localhost:5000",
 			"https://kirillivano.github.io",
+			"http://localhost:5000",
 			"http://localhost",
 			"http://0.0.0.0",
 			"http://127.0.0.1",
